@@ -36,8 +36,8 @@ if($submit){
 		// print_r($response_2);
 
 		
-		$_GET['lp_campaign_id'] = $_GET['jornaya_lead'];
-		$_GET['lp_campaign_key'] = $_GET['jornaya_lead'];
+		$_GET['lp_campaign_id'] =  "63a2437348ed7";
+		$_GET['lp_campaign_key'] = "xVzDrv2gTKcwCtMymdhZ";
 		$_GET['phone_home'] = $_GET['callerid'];
 		$_GET['loan_amount'] = $_GET['Loan_Amount'];
 		$_GET['jornaya_leadid'] = $_GET['jornaya_lead'];
