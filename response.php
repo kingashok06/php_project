@@ -30,7 +30,7 @@ if($submit){
     $data2['lp_campaign_key'] = "xVzDrv2gTKcwCtMymdhZ";
     $data2['phone_home']      = $_GET['callerid'];
     $data2['loan_amount']     = $_GET['Loan_Amount'];
-    $data2['jornaya_leadid']  = $_GET['jornaya_lead'];
+    $data2['jornaya_leadid']  = $_GET['lead_id'];
     $data2['lp_response']     = "json";
     
     if(isset($_GET['lp_s1'])){$data2['lp_s1'] = $_GET['lp_s1'];}
