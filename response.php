@@ -10,12 +10,17 @@ $response = array();
 
 if($submit){
   $data = $_GET;
+  $data = array();
+  $data['phone_home'] = $_GET['callerid'];
+  $data['loan_amount'] = $_GET['Loan_Amount'];
+  $data['jornaya_leadid'] = $_GET['lead_id'];
+  $query_string = http_build_query($data);
 
-  foreach( $data as $key => $key_value ){
-    $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
-  }
+//   foreach( $data as $key => $key_value ){
+//     $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
+//   }
 
-  $query_string = implode('&', $query_array);
+//   $query_string = implode('&', $query_array);
 
   $curl_connection = curl_init('https://display.ringba.com/enrich/2059702967019242516?'.$query_string);
   curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
