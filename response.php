@@ -16,6 +16,7 @@ if($submit){
   }
 
   $query_string = implode('&', $query_array);
+   echo $query_string;
 
   $curl_connection = curl_init('https://display.ringba.com/enrich/2059702967019242516?'.$query_string);
   curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
