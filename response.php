@@ -12,19 +12,29 @@ if($submit){
   $data = $_GET;
 
   foreach( $data as $key => $key_value ){
-    $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
-  }
+        $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
+    }
 
-  $query_string = implode('&', $query_array);
-   echo $query_string;
+    $query_string = implode('&', $query_array);
+    echo $query_string;
 
-  $curl_connection = curl_init('https://display.ringba.com/enrich/2059702967019242516?'.$query_string);
-  curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
-  curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
+    $curl_connection = curl_init('https://display.ringba.com/enrich/2059702967019242516?'.$query_string);
+    curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
+    curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
 
-  $response['site1'] = json_decode(curl_exec($curl_connection), true);
-  $response['site2'] = array('msg' => 'Error', 'errors' => array(array('error' => 'Unable to post.')));
-  curl_close($curl_connection);
+    $curl_response = curl_exec($curl_connection);
+    if($curl_response === false){
+        $response['site1'] = array('msg' => 'Error', 'errors' => array(array('error' => curl_error($curl_connection))));
+    } else {
+        $http_code = curl_getinfo($curl_connection, CURLINFO_HTTP_CODE);
+        if ($http_code >= 200 && $http_code < 300) {
+          $response['site1'] = json_decode($curl_response, true);
+        } else {
+            $response['site1'] = array('msg' => 'Error', 'errors' => array(array('error' => "Request failed with HTTP status code $http_code")));
+        }
+    }
+    curl_close($curl_connection);
+
 
   if($response['site1'] && isset($response['site1']['status']) == "ok"){
     $data2['lp_campaign_id']  = "63a2437348ed7";
