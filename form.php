@@ -33,9 +33,9 @@
               <div class="span12">
                 <div class="span12 grid">
                   <div class="control-group">
-                    <label class="control-label" for="jornaya_lead">Jornaya Lead</label>
+                    <label class="control-label" for="lead_id">Jornaya Lead</label>
                     <div class="controls">
-                      <input type="text" class=" ui-widget-content" name="jornaya_lead" value="" maxlength="100">
+                      <input type="text" class=" ui-widget-content" name="lead_id" value="" maxlength="100">
                     </div>
                   </div>
                 </div>
@@ -377,7 +377,7 @@
     <script src="libs/jquery/js/jquery.js"></script> 
     <script src="libs/jquery/js/jquery.form.js"></script>
     <script>
-      $('input[name="jornaya_lead"]').attr('id','leadid_token');
+      $('input[name="lead_id"]').attr('id','leadid_token');
     </script>
     <script id="LeadiDscript" type="text/javascript">
       (function() {
@@ -476,3 +476,4 @@
     </script> -->
   </body>
 </html>
+<!-- form.php -->
