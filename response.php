@@ -9,45 +9,28 @@ if (isset($_GET["submit"])){
 $response = array();
 
 if($submit){
-//   $data = $_GET;
+  $data = $_GET;
 
-//   foreach( $data as $key => $key_value ){
-//     $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
-//   }
+  foreach( $data as $key => $key_value ){
+    $query_array[] = urlencode( $key ) . '=' . urlencode( $key_value );
+  }
 
-//   $query_string = implode('&', $query_array);
+  $query_string = implode('&', $query_array);
 
-//   $curl_connection = curl_init('https://display.ringba.com/enrich/2059702967019242516?'.$query_string);
-//   curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
-//   curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
+  $curl_connection = curl_init('https://display.ringba.com/enrich/2059702967019242516?'.$query_string);
+  curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
+  curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
 
-//   $response['site1'] = json_decode(curl_exec($curl_connection), true);
-//   $response['site2'] = array('msg' => 'Error', 'errors' => array(array('error' => 'Unable to post.')));
-//   curl_close($curl_connection);
-    
-    $data = array();
-    $data['phone_home'] = $_GET['callerid'];
-    $data['loan_amount'] = $_GET['Loan_Amount'];
-    $data['jornaya_leadid'] = $_GET['lead_id'];
-
-    // Create query string
-    $query_string = http_build_query($data);
-    // Append query string to endpoint URL
-    $url = 'https://display.ringba.com/enrich/2059702967019242516?' . $query_string;
-
-    $curl_connection = curl_init($url);
-    curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
-    curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
-    // Execute cURL request
-    $response = curl_exec($curl_connection);
-    curl_close($curl_connection);
+  $response['site1'] = json_decode(curl_exec($curl_connection), true);
+  $response['site2'] = array('msg' => 'Error', 'errors' => array(array('error' => 'Unable to post.')));
+  curl_close($curl_connection);
 
   if($response['site1'] && isset($response['site1']['status']) == "ok"){
     $data2['lp_campaign_id']  = "63a2437348ed7";
     $data2['lp_campaign_key'] = "xVzDrv2gTKcwCtMymdhZ";
     $data2['phone_home']      = $_GET['callerid'];
     $data2['loan_amount']     = $_GET['Loan_Amount'];
-    $data2['jornaya_leadid']  = $_GET['jornaya_lead'];
+    $data2['jornaya_leadid']  = $_GET['lead_id'];
     $data2['lp_response']     = "json";
     
     if(isset($_GET['lp_s1'])){$data2['lp_s1'] = $_GET['lp_s1'];}
@@ -136,3 +119,4 @@ if($submit){
   echo json_encode($response, JSON_PRETTY_PRINT);
 
 }
+// response.php
